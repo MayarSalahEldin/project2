@@ -1,4 +1,9 @@
-class ApplicationController < ActionController::API
-  # Make the connection between the controller action and associated view
-  include ActionController::ImplicitRender
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  around_action :set_locale_from_url
+
+  def index
+    render template: 'application'
+  end
+
 end

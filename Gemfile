@@ -1,46 +1,53 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'bundler', '1.17.3' 
+ruby '2.6.5'
 
-gem 'rails', '4.2.8'
-gem 'rails-api'
-gem 'pry-rails', '~>0.3', '>=0.3.4'
-gem 'rack-cors', '~>0.4', '>=0.4.0', :require => 'rack/cors'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 
-gem 'jbuilder', '~>2.0', '>=2.6.0'
+gem 'sqlite3'
+gem 'bootsnap', '>= 1.4.2', require: false
+gem 'puma', '~> 4.1'
+gem 'sass-rails', '>= 6'
+gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 4.0'
+gem 'route_translator'
+gem 'jbuilder', '~> 2.5'
+gem 'kaminari'
+gem 'ransack'
+gem 'devise'
+gem 'foreman'
 
-gem 'puma', '~>3.6', '>=3.6.0'#, :platforms=>:ruby
-gem 'pg', '~>0.20.0'
-gem 'mongo', '~>2.9', '<2.10'
-gem 'mongoid', '~>5.1', '>=5.1.5'
+# COMMENTED OUT: Turbolinks doesn't play well with SPA
+# gem 'turbolinks', '~> 5'
 
-group :development do 
-	gem 'spring'        
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Adds support for Capybara system testing and selenium driver
+  gem 'minitest'
+  gem 'minitest-focus'
+  gem 'minitest-rails'
+  gem 'minitest-rails-capybara'
+  gem 'minitest-matchers'
+  gem 'minitest-metadata'
+  gem 'minitest-profiler'
+  gem 'capybara-email'
+  gem 'json-schema'
+  gem 'warden'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
-group :development, :test do 
-	gem 'rspec-rails', '~>3.5', '>=3.5.2'
-	gem 'httparty', '~>0.14', '>=0.14.0'
-	gem 'byebug', '~>9.0', '>=9.0.6'
-	gem 'pry-byebug', '~>3.4', '3.4.0'
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-	gem 'rails_12factor', '~>0.0', '>=0.0.3'
-end
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
