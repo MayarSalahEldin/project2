@@ -1,28 +1,50 @@
 Rails.application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+  get '/ui/' => 'ui#index'
+  get '/ui#' => 'ui#index'
+  root "ui#index"
 
-  mount ActionCable.server => '/cable'
+  scope :api, defaults: {format: :json} do
+    resources :cities, except: [:new, :edit]
+    resources :states, except: [:new, :edit]
+  end  
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
-  localized do
-    devise_for :users, only: [:sessions]
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
 
-    namespace :api, :defaults => { :format => 'json' } do
-      resources :musicians, only: [:index, :show]
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', on: :collection
+  #     end
+  #   end
 
-      namespace :admin do
-        as :user do
-          delete 'sign_out', to: '/devise/sessions#destroy'
-        end
-        resources :dashboard, only: :index
-        resources :users, except: :show
-        resources :musicians, except: :show
-      end
-    end
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post 'toggle'
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
 
-    get '/admin', to: 'admin#index'
-    match "/admin/*path", to: "admin#index", format: false, via: :get
-
-    root :to => "application#index"
-    match "*path", to: "application#index", format: false, via: :get
-  end
-
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
 end
