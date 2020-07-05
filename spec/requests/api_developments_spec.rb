@@ -1,35 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe "ApiDevelopments", type: :request do
-  describe "RDBMS-backed" do
-    before(:each) {Foo.delete_all}
-    after(:each) {Foo.delete_all}
-
-    it "create RDBMS-backed model" do
-      object=Foo.create(:name=>"test")
-      expect(Foo.find(object.id).name).to eq("test")
+	def parsed_body
+		JSON.parse(response.body)
+	end
+  describe "RDBMS-City" do
+    it "create City model" do
+    	object = City.create(:name=>"test")
+    	expect(City.find(object.id).name).to eq("test")
     end
-    it "expose RDBMS-backed Api resource" do
-      object=Foo.create(:name=>"test")
-      get foo_path(object.id)
-      expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)["name"]).to eq("test")
+    it "expose RDBMS-City API resource" do
+    	object = City.create(:name=>"test")
+    	expect(cities_path).to eq('/api/cities')
+    	get city_path(object.id)
+    	expect(response).to have_http_status(:ok)
+    	expect(parsed_body["name"]).to eq('test')
     end
   end
-
-  describe "MOngoDB-backed" do
-    before(:each) {Bar.delete_all}
-    after(:each) {Bar.delete_all}
-
-    it "create MongoDB-backed model" do
-      object=Bar.create(:name=>"test")
-      expect(Bar.find(object.id).name).to eq("test")
+    describe "MongoDB-State" do
+    it "create State model" do
+    	object = State.create(:name=>"test")
+    	expect(State.find(object.id).name).to eq("test")
     end
-    it "expose MongoDB-backed Api resource" do
-      object=Bar.create(:name=>"test")
-      get bar_path(object.id)
-      expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)["name"]).to eq("test")
+    it "expose MongoDB-State API resource" do
+    	object = State.create(:name=>"test")
+    	expect(states_path).to eq('/api/states')
+    	get state_path(object.id)
+    	expect(response).to have_http_status(:ok)
+    	expect(parsed_body["name"]).to eq('test')
+    	expect(parsed_body).to include("created_at")
+    	expect(parsed_body).to include("id"=>object.id.to_s)
     end
   end
 end
