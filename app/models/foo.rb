@@ -1,2 +1,2 @@
-class Foo < ApplicationRecord::Base
+class Foo < ApplicationRecord
 end
