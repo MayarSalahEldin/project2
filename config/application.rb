@@ -19,7 +19,7 @@ Bundler.require(*Rails.groups)
 module Demoapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+   # config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -27,18 +27,17 @@ module Demoapp
 
     # Don't generate system test files.
     Mongoid.load!('./config/mongoid.yml')
-    config.generators.system_tests = nil
     config.generators {|g| g.orm :active_record}
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'siteB.com'
+        origins '*'
 
         resource '/api/*',
           :headers => :any,
           :methods => [:get,:post,:put,:delete,:options]
       end
     end
-    ENV['TMP'] = 'C:/Windows/Temp' # or any other valid temp directory
+       config.active_record.raise_in_transactional_callbacks = true
   end
 end
