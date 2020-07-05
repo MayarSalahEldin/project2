@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: capstone_app_development
+  database: myapp_development
 
 test:
   <<: *default
-  database: capstone_app_test
+  database: myapp_test
 
 production:
-  adapter: postgresql
+  adapter: postresql
   encoding: unicode
   pool: 5
   url: <%= ENV['DATABASE_URL'] %>
