@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   root "ui#index"
 
   scope :api, defaults: {format: :json} do
-    resources :cities, except: [:new, :edit]
-    resources :states, except: [:new, :edit]
+  resources :foos
+  resources :bars
+  resources :states
+  resources :cities
   end  
   #   resources :products do
   #     member do
