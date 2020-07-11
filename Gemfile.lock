@@ -162,7 +162,7 @@ GEM
     rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.6)
+    rails (4.2.8)
       actionmailer (= 4.2.6)
       actionpack (= 4.2.6)
       actionview (= 4.2.6)
@@ -306,7 +306,7 @@ DEPENDENCIES
   puma (~> 3.6, >= 3.6.0)
   pundit (~> 1.1, >= 1.1.0)
   rack-cors (~> 0.4, >= 0.4.0)
-  rails (= 4.2.6)
+  rails (= 4.2.8)
   rails-api (~> 0.4, >= 0.4.0)
   rails-assets-angular (= 1.5.9)!
   rails-assets-angular-cookie!
