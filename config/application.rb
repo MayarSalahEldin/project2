@@ -35,7 +35,7 @@ module Myapp
     #    to rails generate cmd line to be specific
     config.generators {|g| g.orm :active_record}
     #config.generators {|g| g.orm :mongoid}
-
+    config.assets.digest = true
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
