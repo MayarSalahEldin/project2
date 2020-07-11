@@ -35,8 +35,7 @@ module Myapp
     #    to rails generate cmd line to be specific
     config.generators {|g| g.orm :active_record}
     #config.generators {|g| g.orm :mongoid}
-    config.assets.version = '1.0'
-    config.assets.digest = true
+
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
@@ -47,17 +46,7 @@ module Myapp
       end
     end
 
-    config.generators do |g|
-      g.test_framework :rspec,
-        :model_specs => true,
-        :routing_specs => false,
-        :controller_specs => false,
-        :helper_specs => false,
-        :view_specs => false,
-        :request_specs => true,
-        :policy_specs => false,
-        :feature_specs => true
-    end
+   
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
