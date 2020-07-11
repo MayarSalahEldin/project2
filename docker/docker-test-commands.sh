@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -x
-rake db:create
-rake db:migrate
-rspec spec/requests --fail-fast
+/usr/local/bin/vnc.sh
+set -x 
+rake db:create RAILS_ENV=test
+rake db:migrate RAILS_ENV=test
+rspec spec/features --fail-fast
+tail -f Gemfile

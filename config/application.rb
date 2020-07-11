@@ -30,21 +30,33 @@ module Myapp
     # config.i18n.default_locale = :de
 
     Mongoid.load!('./config/mongoid.yml')
-    # which default ORM are we using with scaffold
-    # add --orm mongoid, or active_record
-    #     to rails generate cmd line to be specific
+    #which default ORM are we using with scaffold
+    #add  --orm mongoid, or active_record 
+    #    to rails generate cmd line to be specific
     config.generators {|g| g.orm :active_record}
-    # config.generators {|g| g.orm :mongoid}
+    #config.generators {|g| g.orm :mongoid}
 
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
-        origins '*'
+        origins /https:\/\/\w+\.github\.io/
 
-        resource '/api/*',
-          :headers => :any,
-          # :methods => [:get, :post, :put, :delete, :options]
-          :methods => [:get]
+        resource '*', 
+          :headers => :any, 
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :methods => [:get, :post, :put, :delete, :options]
       end
+    end
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        :model_specs => true,
+        :routing_specs => false,
+        :controller_specs => false,
+        :helper_specs => false,
+        :view_specs => false,
+        :request_specs => true,
+        :policy_specs => false,
+        :feature_specs => true
     end
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

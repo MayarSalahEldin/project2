@@ -6,7 +6,6 @@ development:
         - <%= ENV['MONGO_HOST'] ||= "localhost:27017" %>
       options:
   options:
-    
 test:
   clients:
     default:
@@ -17,10 +16,9 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
-
 production:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: <%= ENV['MLAB_URI'] %>
       options:
         connect_timeout: 15

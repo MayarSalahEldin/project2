@@ -1,6 +1,8 @@
 /*
- * SPA Stylesheet Manifest File
+ * SPA Demo Stylesheet Manifest File
  *
- *=require bootstrap
- *=require spa-demo/layout.css
+ *= require bootstrap
+ *= require spa-demo/layout
+ *= require spa-demo/authn
+ *= require spa-demo/subjects
  */
